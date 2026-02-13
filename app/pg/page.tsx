@@ -2,7 +2,6 @@
 
 import React from "react";
 import FloatingHearts from "../../components/FloatingHearts";
-import PolaroidGallery from '@/components/PolaroidGallery';
 import { useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 
@@ -45,23 +44,29 @@ export default function Page() {
       <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 space-y-12">
         <div className="w-full max-w-2xl">
           <div className="mx-auto rounded-2xl bg-white/6 backdrop-blur-md border border-white/10 shadow-2xl p-12">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-center leading-tight">
-              Welcome to Your
-              <span className="block text-teal-400">PG Gallery</span>
-            </h1>
-
-            <p className="mt-6 text-center text-gray-200/80">
-              Explore a curated collection of stickers and artwork. Move your mouse to watch the
-              background come alive.
-            </p>
-
-            <div className="mt-8 flex justify-center">
-              <Link href="/dashboard" className="inline-flex items-center px-6 py-3 rounded-full bg-teal-400 text-black font-semibold shadow-md hover:opacity-95">Explore</Link>
+            <div className="flex items-center justify-center">
+              <div
+                className="
+                  relative
+                  w-[360px] h-[640px]
+                  rounded-2xl
+                  overflow-hidden
+                  bg-black
+                "
+              >
+                <video
+                  src="/video/sk.mp4"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <PolaroidGallery />
+        {/* Removed the PolaroidGallery component to eliminate all polaroid-style image cards */}
       </section>
     </div>
   );
