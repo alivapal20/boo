@@ -16,7 +16,7 @@ export default function LoginPage() {
   }, []);
 
   const handleLogin = () => {
-    if (password === "be-mine") {
+    if (password === "bemine") {
       sessionStorage.setItem("auth", "true");
       router.push("/dashboard");
     } else {
@@ -26,7 +26,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
-      <div className="w-[340px] rounded-2xl border border-pink-500/40 bg-black p-6 shadow-[0_0_40px_rgba(255,47,146,0.25)]">
+      <div className="w-100 rounded-2xl border border-pink-500/40 bg-black p-6 shadow-[0_0_40px_rgba(255,47,146,0.25)]">
         <h1 className="mb-6 text-center text-2xl font-semibold text-pink-500">
           Login
         </h1>

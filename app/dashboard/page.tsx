@@ -66,9 +66,11 @@ function FloatingImage({
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
+  const TOP_SAFE_PX = 80; // safe distance from top
+
   const baseStyle: Record<string, any> = {
     left: img.x,
-    top: img.y,
+    top: `calc(${img.y} + ${TOP_SAFE_PX}px)`,
     "--gap-x": `calc(-50% + ${img.gapX ?? 0}px)`,
     "--gap-y": `calc(-50% + ${img.gapY ?? 0}px)`,
   };
@@ -78,7 +80,7 @@ function FloatingImage({
   return (
     <motion.div
       style={style}
-      className={`absolute w-64 h-64 translate-x-[var(--gap-x)] translate-y-[var(--gap-y)]`}
+      className={`absolute w-64 h-64 translate-x-(--gap-x) translate-y-(--gap-y)`}
     >
       {normalizedSrc ? (
         <div className="w-full h-full rounded-3xl overflow-hidden shadow-2xl relative">
@@ -94,12 +96,12 @@ function FloatingImage({
             }}
           />
           <div
-            className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${img.color} mix-blend-overlay opacity-40 pointer-events-none`}
+            className={`absolute inset-0 rounded-3xl bg-linear-to-br ${img.color} mix-blend-overlay opacity-40 pointer-events-none`}
           />
         </div>
       ) : (
         <div
-          className={`w-full h-full rounded-3xl bg-gradient-to-br ${img.color} backdrop-blur-sm shadow-2xl`}
+          className={`w-full h-full rounded-3xl bg-linear-to-br ${img.color} backdrop-blur-sm shadow-2xl`}
         />
       )}
     </motion.div>
@@ -208,7 +210,7 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div ref={containerRef} onMouseMove={handleMouseMove} className="relative min-h-screen w-full bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950 overflow-x-hidden">
+    <div ref={containerRef} onMouseMove={handleMouseMove} className="relative min-h-screen w-full bg-linear-to-br from-slate-950 via-slate-900 to-teal-950 overflow-x-hidden">
       <div className="fixed inset-0 pointer-events-none">
         <FloatingHearts smoothMouseX={smoothMouseX} smoothMouseY={smoothMouseY} />
         {floatingImages.map((img) => (
@@ -220,14 +222,14 @@ export default function DashboardPage() {
         <section className="flex items-center justify-center min-h-screen px-4">
           <div className="relative max-w-2xl w-full">
             <div className="relative backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl p-12 shadow-2xl">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-teal-400/10 to-blue-400/10" />
+              <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-teal-400/10 to-blue-400/10" />
               <div className="relative z-10 text-center space-y-6">
                 <h1 className="text-5xl md:text-6xl font-bold text-white tracking-tight">
                   Welcome to Your
-                  <span className="block bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Dashboard</span>
+                  <span className="block bg-linear-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Dashboard</span>
                 </h1>
                 <p className="text-xl text-slate-300 max-w-lg mx-auto">Experience a new way to visualize and interact with your data</p>
-                <Link href="/pg" className="mt-8 inline-block px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:shadow-teal-500/50 transition-all duration-300 hover:scale-105 text-center">Get Started</Link>
+                <Link href="/pg" className="mt-8 inline-block px-8 py-4 bg-linear-to-r from-teal-500 to-cyan-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:shadow-teal-500/50 transition-all duration-300 hover:scale-105 text-center">Get Started</Link>
               </div>
             </div>
           </div>
@@ -271,7 +273,7 @@ export default function DashboardPage() {
                   "
                 >
                   <div className="relative z-10">
-                    <div className="w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-400 flex items-center justify-center text-white font-bold text-xl">
+                    <div className="w-12 h-12 mb-4 rounded-xl bg-linear-to-br from-teal-400 to-cyan-400 flex items-center justify-center text-white font-bold text-xl">
                       {card.id}
                     </div>
                     <h3 className="text-2xl font-semibold text-white mb-3">
@@ -299,7 +301,7 @@ export default function DashboardPage() {
       {/* Logout button moved here */}
       <button
         className="
-          fixed top-6 right-6 z-[9999]
+          fixed top-6 right-6 z-9999
           px-4 py-2
           bg-pink-500 text-white
           rounded-md shadow-lg

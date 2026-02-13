@@ -52,7 +52,7 @@ import FloatingHearts from "../../components/FloatingHearts";
 
         {/* Audio tags */}
         <audio ref={song1} src="/music/kk.mp3" loop />
-        <audio ref={song2} src="/music/song2.mp3" loop />
+        <audio ref={song2} src="/music/pi.mp3" loop />
 
         {/* Hint for browsers that block autoplay */}
         {!started && autoplayBlocked && (
@@ -71,7 +71,7 @@ import FloatingHearts from "../../components/FloatingHearts";
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.8 }}
+              transition={{ duration: 1.0 }}
               className="w-[380px] rounded-3xl shadow-2xl z-10"
             />
           )}
@@ -84,7 +84,7 @@ import FloatingHearts from "../../components/FloatingHearts";
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.8 }}
+              transition={{ duration: 1.0 }}
               className="w-[420px] rounded-3xl shadow-2xl z-10"
             />
           )}
