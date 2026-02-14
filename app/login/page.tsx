@@ -15,8 +15,22 @@ export default function LoginPage() {
     }
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        handleLogin();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [password]);
+
   const handleLogin = () => {
-    if (password === "bemine") {
+    if (password === "tuidhemna") {
       sessionStorage.setItem("auth", "true");
       router.push("/dashboard");
     } else {

@@ -113,6 +113,35 @@ function FloatingImage({
 // - Background cards use Framer Motion motion values for mouse-based parallax
 export default function DashboardPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const startMusic = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0; // Force start from the beginning
+        audioRef.current.volume = 0.4;
+        audioRef.current.play().catch(() => {});
+      }
+
+      window.removeEventListener("click", startMusic);
+      window.removeEventListener("mousemove", startMusic);
+      window.removeEventListener("keydown", startMusic);
+      window.removeEventListener("touchstart", startMusic);
+    };
+
+    window.addEventListener("click", startMusic);
+    window.addEventListener("mousemove", startMusic);
+    window.addEventListener("keydown", startMusic);
+    window.addEventListener("touchstart", startMusic);
+
+    return () => {
+      window.removeEventListener("click", startMusic);
+      window.removeEventListener("mousemove", startMusic);
+      window.removeEventListener("keydown", startMusic);
+      window.removeEventListener("touchstart", startMusic);
+    };
+  }, []);
 
   // MotionValues track the mouse offsets; using MotionValue avoids React re-renders
   const mouseX = useMotionValue(0);
@@ -210,7 +239,11 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div ref={containerRef} onMouseMove={handleMouseMove} className="relative min-h-screen w-full bg-linear-to-br from-slate-950 via-slate-900 to-teal-950 overflow-x-hidden">
+    <div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen w-full bg-linear-to-br from-slate-950 via-slate-900 to-teal-950 overflow-x-hidden"
+    >
       <div className="fixed inset-0 pointer-events-none">
         <FloatingHearts smoothMouseX={smoothMouseX} smoothMouseY={smoothMouseY} />
         {floatingImages.map((img) => (
@@ -315,6 +348,15 @@ export default function DashboardPage() {
       >
         Logout
       </button>
+
+      {/* Hidden Background Music Player */}
+      <audio
+        ref={audioRef}
+        src="/music/tap.mp3"
+        loop
+        preload="auto"
+        style={{ display: "none" }}
+      />
     </div>
   );
 }
