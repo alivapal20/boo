@@ -138,20 +138,17 @@ export default function HowWeMetPage() {
             </h2>
 
             <p className="text-slate-200 leading-relaxed mb-6">
-              <span className="text-pink-500 text-5xl font-extrabold">Babe??</span> <br />
+              <span className="text-pink-500 text-5xl font-extrabold">Our Story</span>
+              <br />
               <span className="text-yellow-100 font-semibold">
-                No bro jeibhabei met korechi icha nei r bal.
-              </span> <br />
-              <span className="text-blue-100">jokhon dekhi tokhon eirkm reaction,</span> <br />
-              <span className="text-amber-200 font-medium">
-                photo tolar icha nei toh bara tulbi na nekachoda bara dekhechis nij k?
-              </span> <br />
-              <span className="text-purple-300 font-bold">Friends der sathei thak bara ora e bhalo tor jono! Dhemna!!!! ❤️</span>
+                A chance hello, a shared laugh, and a spark that stayed.
+              </span>
+              <br />
+              <span className="text-slate-300">Small moments, big memories — still loving every one.</span>
             </p>
 
             <p className="text-slate-400 italic">
-              📍 BAL <br />
-              🗓 2nd year of vday!!!
+              📍 Cafe 82 • 1st Meet
             </p>
 
             <img
